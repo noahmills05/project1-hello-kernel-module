@@ -76,8 +76,35 @@ This is an out-of-tree module, so the kernel warns that it is not part of the ma
 - `rmmod` unloads a module
 - `dmesg` shows kernel log messages
 
-## Next steps
-- Add module parameters
-- Build a simple character device driver
-- Later move toward a custom Ubuntu kernel build
+## Module parameter version
 
+The modules now supports a string parameter called `name`.
+
+#### Parameter code
+```c
+static char *name = "Noah";
+module_param(name, charp, 0644);
+MODULE_PARM_DESC(name, "Name to print when the module laods");
+```
+
+### Example usage
+```bash
+sudo insmod hello_t490.ko name="Noah"
+dmesg | tail -n 20
+sudo rmmod hello_t490
+dmesg | tail -n 20
+```
+
+### Expected output
+```text 
+hello_t490: module loaded on T490, hello Noah
+hello_t490: module unloaded, goodbye Noah
+```
+
+### What changed
+This version improves the original hello module by allowing a module to be passed into the module at load time.
+
+## Next steps
+- Finish testing the parameterised version
+- Build a simple character device driver
+- Continue documenting all milestones on GitHub
