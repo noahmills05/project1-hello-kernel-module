@@ -4,7 +4,7 @@
 *.mod.c
 *.mod.o
 *.symvers
-module.order
+modules.order
 Module.symvers
 .*.cmd
 .tmp_versions/
