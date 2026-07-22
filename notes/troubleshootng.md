@@ -43,3 +43,19 @@ dmesg | tail -n 20
 ls
 ```
 
+---
+
+## Error: expected ')' before string constant
+
+### Cause
+There was a syntax problem around the `MODULE_PARM_DESC(...)` line.
+
+### Meaning
+Even a tiny formatting or punctuation mistake in a kernel macro can break the build.
+
+### Fix
+I replaced the affected lines with a clean known-good version of the parameter code and rebuilt the module.
+
+### Lesson
+When C macro code looks correct but still fails, it is often best to replace teh whole block instead of trying to guess at teh hidden formatting issues.
+
